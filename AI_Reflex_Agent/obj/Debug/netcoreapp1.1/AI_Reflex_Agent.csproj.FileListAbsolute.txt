@@ -1,0 +1,10 @@
+C:\Users\Juan\source\repos\AI_Reflex_Agent\AI_Reflex_Agent\bin\Debug\netcoreapp1.1\AI_Reflex_Agent.deps.json
+C:\Users\Juan\source\repos\AI_Reflex_Agent\AI_Reflex_Agent\bin\Debug\netcoreapp1.1\AI_Reflex_Agent.runtimeconfig.json
+C:\Users\Juan\source\repos\AI_Reflex_Agent\AI_Reflex_Agent\bin\Debug\netcoreapp1.1\AI_Reflex_Agent.runtimeconfig.dev.json
+C:\Users\Juan\source\repos\AI_Reflex_Agent\AI_Reflex_Agent\bin\Debug\netcoreapp1.1\AI_Reflex_Agent.dll
+C:\Users\Juan\source\repos\AI_Reflex_Agent\AI_Reflex_Agent\bin\Debug\netcoreapp1.1\AI_Reflex_Agent.pdb
+C:\Users\Juan\source\repos\AI_Reflex_Agent\AI_Reflex_Agent\obj\Debug\netcoreapp1.1\AI_Reflex_Agent.csprojResolveAssemblyReference.cache
+C:\Users\Juan\source\repos\AI_Reflex_Agent\AI_Reflex_Agent\obj\Debug\netcoreapp1.1\AI_Reflex_Agent.csproj.CoreCompileInputs.cache
+C:\Users\Juan\source\repos\AI_Reflex_Agent\AI_Reflex_Agent\obj\Debug\netcoreapp1.1\AI_Reflex_Agent.AssemblyInfo.cs
+C:\Users\Juan\source\repos\AI_Reflex_Agent\AI_Reflex_Agent\obj\Debug\netcoreapp1.1\AI_Reflex_Agent.dll
+C:\Users\Juan\source\repos\AI_Reflex_Agent\AI_Reflex_Agent\obj\Debug\netcoreapp1.1\AI_Reflex_Agent.pdb
