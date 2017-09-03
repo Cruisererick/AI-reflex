@@ -12,7 +12,7 @@ namespace AI_Reflex_Agent
 		private int CurrentYPosition;
 		private int PlanXPosition;
 		private int PlanYPosition;
-		private string[,] matrix;
+		private Map map;
 		private int Points;
 		private static List<List<int>> Paths = new List<List<int>>();
 		int CrossOneX = 3;
@@ -30,13 +30,13 @@ namespace AI_Reflex_Agent
 		List<int> pool = new List<int>();
 
 
-		public Reflex_Agent(int x, int y, string[,] matrix)
+		public Reflex_Agent(int x, int y, Map map)
 		{
 			CurrentXPosition = x;
 			CurrentYPosition = y;
 			PlanXPosition = x;
 			PlanYPosition = y;
-			this.matrix = matrix;
+			this.map = map;
 			Points = 0;
 			PlanRun();
 		}
@@ -50,41 +50,41 @@ namespace AI_Reflex_Agent
 				{
 					MoveRight();
 					Clean();
-					Map.setMatrixPos(CurrentXPosition, CurrentYPosition, "R");
+					map.setMatrixPos(CurrentXPosition, CurrentYPosition, "R");
 					Console.Clear();
-					Map.printMap();
-					Console.WriteLine("Current Rumba Position:" + " X:" + CurrentXPosition + " Y:" + CurrentYPosition);
-					Console.WriteLine("Current Rumba Points:" + Points);
+					map.printMap();
+					Console.WriteLine("Current Reflex Rumba Position:" + " X:" + CurrentXPosition + " Y:" + CurrentYPosition);
+					Console.WriteLine("Current Reflex Rumba Points:" + Points);
 				}
 				else if (pool[i] == 2)
 				{
 					MoveLeft();
 					Clean();
-					Map.setMatrixPos(CurrentXPosition, CurrentYPosition, "R");
+					map.setMatrixPos(CurrentXPosition, CurrentYPosition, "R");
 					Console.Clear();
-					Map.printMap();
-					Console.WriteLine("Current Rumba Position:" + " X:" + CurrentXPosition + " Y:" + CurrentYPosition);
-					Console.WriteLine("Current Rumba Points:" + Points);
+					map.printMap();
+					Console.WriteLine("Current Reflex Rumba Position:" + " X:" + CurrentXPosition + " Y:" + CurrentYPosition);
+					Console.WriteLine("Current Reflex Rumba Points:" + Points);
 				}
 				else if (pool[i] == 3)
 				{
 					MoveDown();
 					Clean();
-					Map.setMatrixPos(CurrentXPosition, CurrentYPosition, "R");
+					map.setMatrixPos(CurrentXPosition, CurrentYPosition, "R");
 					Console.Clear();
-					Map.printMap();
-					Console.WriteLine("Current Rumba Position:" + " X:" + CurrentXPosition + " Y:" + CurrentYPosition);
-					Console.WriteLine("Current Rumba Points:" + Points);
+					map.printMap();
+					Console.WriteLine("Current Reflex Rumba Position:" + " X:" + CurrentXPosition + " Y:" + CurrentYPosition);
+					Console.WriteLine("Current Reflex Rumba Points:" + Points);
 				}
 				else if (pool[i] == 4)
 				{
 					MoveUp();
 					Clean();
-					Map.setMatrixPos(CurrentXPosition, CurrentYPosition, "R");
+					map.setMatrixPos(CurrentXPosition, CurrentYPosition, "R");
 					Console.Clear();
-					Map.printMap();
-					Console.WriteLine("Current Rumba Position:" + " X:" + CurrentXPosition + " Y:" + CurrentYPosition);
-					Console.WriteLine("Current Rumba Points:" + Points);
+					map.printMap();
+					Console.WriteLine("Current Reflex Rumba Position:" + " X:" + CurrentXPosition + " Y:" + CurrentYPosition);
+					Console.WriteLine("Current Reflex Rumba Points:" + Points);
 				}
 
 
@@ -176,7 +176,7 @@ namespace AI_Reflex_Agent
 				{
 					if (y > CrossOneY)
 					{
-						if (Map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
 						{
 							moveLeft(ref x, ref y, pool);
 						}
@@ -185,7 +185,7 @@ namespace AI_Reflex_Agent
 					}
 					else if (y < CrossOneY)
 					{
-						if (Map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
 						{
 							moveRight(ref x, ref y, pool);
 						}
@@ -198,7 +198,7 @@ namespace AI_Reflex_Agent
 				{
 					if (x > CrossOneX)
 					{
-						if (Map.getStatusOnPos(x - 1, y).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x - 1, y).CompareTo(" ") != 0)
 						{
 							moveUp(ref x, ref y, pool);
 						}
@@ -207,7 +207,7 @@ namespace AI_Reflex_Agent
 					}
 					else if (x < CrossOneX)
 					{
-						if (Map.getStatusOnPos(x + 1, y).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x + 1, y).CompareTo(" ") != 0)
 						{
 							moveDown(ref x, ref y, pool);
 						}
@@ -224,7 +224,7 @@ namespace AI_Reflex_Agent
 			{
 				while (true)
 				{
-					if (Map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
+					if (map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
 						moveLeft(ref x, ref y, pool);
 					else
 						break;
@@ -233,7 +233,7 @@ namespace AI_Reflex_Agent
 
 				while (true)
 				{
-					if (Map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0 && y != CrossOneY)
+					if (map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0 && y != CrossOneY)
 					{
 						moveRight(ref x, ref y, pool);
 					}
@@ -260,13 +260,13 @@ namespace AI_Reflex_Agent
 				{
 					if (y > CrossTwoY)
 					{
-						if (Map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
 						{
 							moveLeft(ref x, ref y, pool);
 						}
 						else if (x == CrossTwoX)
 						{
-							while (Map.getStatusOnPos(x, y - 1).CompareTo(" ") == 0)
+							while (map.getStatusOnPos(x, y - 1).CompareTo(" ") == 0)
 							{
 								moveUp(ref x, ref y, pool);
 							}
@@ -276,7 +276,7 @@ namespace AI_Reflex_Agent
 					}
 					else if (y < CrossTwoY)
 					{
-						if (Map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
 						{
 							moveRight(ref x, ref y, pool);
 						}
@@ -289,7 +289,7 @@ namespace AI_Reflex_Agent
 				{
 					if (x > CrossTwoX)
 					{
-						if (Map.getStatusOnPos(x - 1, y).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x - 1, y).CompareTo(" ") != 0)
 						{
 							moveUp(ref x, ref y, pool);
 						}
@@ -298,7 +298,7 @@ namespace AI_Reflex_Agent
 					}
 					else if (x < CrossTwoX)
 					{
-						if (Map.getStatusOnPos(x + 1, y).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x + 1, y).CompareTo(" ") != 0)
 						{
 							moveDown(ref x, ref y, pool);
 						}
@@ -315,7 +315,7 @@ namespace AI_Reflex_Agent
 			{
 				while (true)
 				{
-					if (Map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
+					if (map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
 						moveLeft(ref x, ref y, pool);
 					else
 						break;
@@ -324,7 +324,7 @@ namespace AI_Reflex_Agent
 
 				while (true)
 				{
-					if (Map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0 && y != CrossTwoY)
+					if (map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0 && y != CrossTwoY)
 					{
 						moveRight(ref x, ref y, pool);
 					}
@@ -352,7 +352,7 @@ namespace AI_Reflex_Agent
 				{
 					if (y > CrossTreeY)
 					{
-						if (Map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
 						{
 							moveLeft(ref x, ref y, pool);
 						}
@@ -361,7 +361,7 @@ namespace AI_Reflex_Agent
 					}
 					else if (y < CrossTreeY)
 					{
-						if (Map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
 						{
 							moveRight(ref x, ref y, pool);
 						}
@@ -374,7 +374,7 @@ namespace AI_Reflex_Agent
 				{
 					if (x > CrossTreeX)
 					{
-						if (Map.getStatusOnPos(x - 1, y).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x - 1, y).CompareTo(" ") != 0)
 						{
 							moveUp(ref x, ref y, pool);
 						}
@@ -383,7 +383,7 @@ namespace AI_Reflex_Agent
 					}
 					else if (x < CrossTreeX)
 					{
-						if (Map.getStatusOnPos(x + 1, y).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x + 1, y).CompareTo(" ") != 0)
 						{
 							moveDown(ref x, ref y, pool);
 						}
@@ -400,7 +400,7 @@ namespace AI_Reflex_Agent
 			{
 				while (true)
 				{
-					if (Map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
+					if (map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
 					{
 						moveRight(ref x, ref y, pool);
 					}
@@ -411,7 +411,7 @@ namespace AI_Reflex_Agent
 
 				while (true)
 				{
-					if (Map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0 && y != CrossTreeY)
+					if (map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0 && y != CrossTreeY)
 					{
 						moveLeft(ref x, ref y, pool);
 					}
@@ -439,7 +439,7 @@ namespace AI_Reflex_Agent
 				{
 					if (y > CrossFourY)
 					{
-						if (Map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0)
 						{
 							moveLeft(ref x, ref y, pool);
 						}
@@ -448,13 +448,13 @@ namespace AI_Reflex_Agent
 					}
 					else if (y < CrossFourY)
 					{
-						if (Map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
 						{
 							moveRight(ref x, ref y, pool);
 						}
 						else if (x == CrossFourX)
 						{
-							while (Map.getStatusOnPos(x, y + 1).CompareTo(" ") == 0)
+							while (map.getStatusOnPos(x, y + 1).CompareTo(" ") == 0)
 							{
 								moveUp(ref x, ref y, pool);
 							}
@@ -468,7 +468,7 @@ namespace AI_Reflex_Agent
 				{
 					if (x > CrossFourX)
 					{
-						if (Map.getStatusOnPos(x - 1, y).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x - 1, y).CompareTo(" ") != 0)
 						{
 							moveUp(ref x, ref y, pool);
 						}
@@ -477,7 +477,7 @@ namespace AI_Reflex_Agent
 					}
 					else if (x < CrossFourX)
 					{
-						if (Map.getStatusOnPos(x + 1, y).CompareTo(" ") != 0)
+						if (map.getStatusOnPos(x + 1, y).CompareTo(" ") != 0)
 						{
 							moveDown(ref x, ref y, pool);
 						}
@@ -494,7 +494,7 @@ namespace AI_Reflex_Agent
 			{
 				while (true)
 				{
-					if (Map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
+					if (map.getStatusOnPos(x, y + 1).CompareTo(" ") != 0)
 						moveRight(ref x, ref y, pool);
 					else
 						break;
@@ -503,7 +503,7 @@ namespace AI_Reflex_Agent
 
 				while (true)
 				{
-					if (Map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0 && y != CrossTreeY)
+					if (map.getStatusOnPos(x, y - 1).CompareTo(" ") != 0 && y != CrossTreeY)
 					{
 						moveLeft(ref x, ref y, pool);
 					}
@@ -572,9 +572,9 @@ namespace AI_Reflex_Agent
 
 		public void Clean()
 		{
-			if (matrix[CurrentXPosition, CurrentYPosition].CompareTo("T") == 0)
+			if (map.getStatusOnPos(CurrentXPosition, CurrentYPosition).CompareTo("T") == 0)
 			{
-				Map.setMatrixPos(CurrentXPosition, CurrentYPosition, "C");
+				map.setMatrixPos(CurrentXPosition, CurrentYPosition, "C");
 				Points = Points + 100;
 
 			}

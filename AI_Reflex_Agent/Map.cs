@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AI_Reflex_Agent
 {
-    class Map
-    {
-		private static string[,] matrix = new string[12, 12];
-		private static Map map = null;
-		private Map()
+	
+	public class Map 
+	{
+		private string[,] matrix = new string[12, 12];
+		
+		public Map()
 		{
 			for (int i = 0; i < 12; i++)
 			{
@@ -46,12 +48,22 @@ namespace AI_Reflex_Agent
 
 		}
 
-		public static string[,] getMatrix()
+		private Map(Map map)
+		{
+			matrix = map.getMatrix();
+		}
+
+		public string[,] getMatrix()
 		{
 			return matrix;
 		}
 
-		public static string getStatusOnPos(int x, int y)
+		public void setMatrix(string[,] matrix)
+		{
+			this.matrix = matrix;
+		}
+
+		public string getStatusOnPos(int x, int y)
 		{
 			if (x > 11 || x < 0 || y > 11 || y < 0)
 				return " ";
@@ -59,29 +71,21 @@ namespace AI_Reflex_Agent
 				return matrix[x, y];
 		}
 
-		public static void setMatrixPos(int x, int y, string status)
+		public void setMatrixPos(int x, int y, string status)
 		{
 			matrix[x, y] = status;
 		}
 
-		public static void printMap()
+		public void printMap()
 		{
-			if (map == null)
+			for (int i = 0; i < 12; i++)
 			{
-				Console.WriteLine("No instance of map have been created.");
-			}
-			else
-			{
-
-				for (int i = 0; i < 12; i++)
+				for (int j = 0; j < 12; j++)
 				{
-					for (int j = 0; j < 12; j++)
-					{
-						Console.Write(matrix[i, j]);
-					}
-					Console.WriteLine();
+					Console.Write(matrix[i, j]);
 				}
-			}
+				Console.WriteLine();
+				}
 		}
 
 		private void GenerateTrash()
@@ -109,15 +113,11 @@ namespace AI_Reflex_Agent
 
 		}
 
-		public static Map getInstance()
+		public static Map Clone<Map>(Map source)
 		{
-			if (map == null)
-			{
-				map = new Map();
-				
-			}
-
-			return map;
+			var serialized = JsonConvert.SerializeObject(source);
+			return JsonConvert.DeserializeObject<Map>(serialized);
 		}
+
 	}
 }

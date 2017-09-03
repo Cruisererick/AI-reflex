@@ -9,14 +9,14 @@ namespace AI_Reflex_Agent
     {
 		private int CurrentXPosition;
 		private int CurrentYPosition;
-		private string[,] matrix;
+		private Map map;
 		private int Points;
 
-		public Random_Agent(int x, int y, string[,] matrix)
+		public Random_Agent(int x, int y, Map map)
 		{
 			CurrentXPosition = x;
 			CurrentYPosition = y;
-			this.matrix = matrix;
+			this.map = map;
 			Points = 0;
 		}
 
@@ -26,12 +26,12 @@ namespace AI_Reflex_Agent
 			for (int i = 0; i < movements; i++)
 			{
 				Clean();
-				Map.setMatrixPos(CurrentXPosition, CurrentYPosition, "R");
+				map.setMatrixPos(CurrentXPosition, CurrentYPosition, "R");
 				Move(rnd);
 				Console.Clear();
-				Map.printMap();
-				Console.WriteLine("Current Rumba Position:" + " X:" + CurrentXPosition + " Y:" + CurrentYPosition);
-				Console.WriteLine("Current Rumba Points:" + Points);
+				map.printMap();
+				Console.WriteLine("Current Random Rumba Position:" + " X:" + CurrentXPosition + " Y:" + CurrentYPosition);
+				Console.WriteLine("Current Random Rumba Points:" + Points);
 				int milliseconds = 50;
 				Thread.Sleep(milliseconds);
 			}
@@ -39,9 +39,9 @@ namespace AI_Reflex_Agent
 
 		public void Clean()
 		{
-			if (matrix[CurrentXPosition, CurrentYPosition].CompareTo("T") == 0)
+			if (map.getStatusOnPos(CurrentXPosition, CurrentYPosition).CompareTo("T")==0)
 			{
-				Map.setMatrixPos(CurrentXPosition, CurrentYPosition, "C");
+				map.setMatrixPos(CurrentXPosition, CurrentYPosition, "C");
 				Points = Points + 100;
 				
 			}
@@ -56,7 +56,7 @@ namespace AI_Reflex_Agent
 			if (moveTo == 1)
 			{
 				newX = newX + 1;
-				if (Map.getStatusOnPos(newX, newY).CompareTo(" ") == 0)
+				if (map.getStatusOnPos(newX, newY).CompareTo(" ") == 0)
 				{
 					Points = Points - 1;
 					newX = CurrentXPosition;
@@ -70,7 +70,7 @@ namespace AI_Reflex_Agent
 			else if (moveTo == 2)
 			{
 				newX = newX - 1;
-				if (Map.getStatusOnPos(newX, newY).CompareTo(" ") == 0)
+				if (map.getStatusOnPos(newX, newY).CompareTo(" ") == 0)
 				{
 					Points = Points - 1;
 					newX = CurrentXPosition;
@@ -84,7 +84,7 @@ namespace AI_Reflex_Agent
 			else if (moveTo == 3)
 			{
 				newY = newY + 1;
-				if (Map.getStatusOnPos(newX, newY).CompareTo(" ") == 0)
+				if (map.getStatusOnPos(newX, newY).CompareTo(" ") == 0)
 				{
 					Points = Points - 1;
 					newX = CurrentXPosition;
@@ -98,7 +98,7 @@ namespace AI_Reflex_Agent
 			else if (moveTo == 4)
 			{
 				newY = newY - 1;
-				if (Map.getStatusOnPos(newX, newY).CompareTo(" ") == 0)
+				if (map.getStatusOnPos(newX, newY).CompareTo(" ") == 0)
 				{
 					Points = Points - 1;
 					newX = CurrentXPosition;

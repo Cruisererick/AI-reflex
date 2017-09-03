@@ -6,12 +6,15 @@ namespace AI_Reflex_Agent
     {
         static void Main(string[] args)
         {
-			Map map = Map.getInstance();
-			Map.printMap();
-			//Random_Agent random = new Random_Agent(0, 0, Map.getMatrix());
-			//random.MakeRun(200);
-
-			Reflex_Agent reflex = new Reflex_Agent(8, 11, Map.getMatrix());
+			Map mapRandom = new Map();
+			Map mapReflex = Map.Clone(mapRandom);
+			Random_Agent random = new Random_Agent(3, 6, mapRandom);
+			random.MakeRun(200);
+			Console.WriteLine("Press enter to run reflex agent.");
+			Console.ReadLine();
+			Console.Clear();
+			mapReflex.printMap();
+			Reflex_Agent reflex = new Reflex_Agent(3, 6, mapReflex);
 			reflex.Execute();
 
 			Console.WriteLine("Press enter to close...");
